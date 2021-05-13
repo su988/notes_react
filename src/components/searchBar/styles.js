@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     minHeight: '46px',
+    minWidth: '100%',
     boxShadow: '0px 3px 6px #00000029',
   },
 
