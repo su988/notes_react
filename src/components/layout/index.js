@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useStyles from '../styles';
+import useStyles from './styles';
 
 function Layout({ children }) {
   const classes = useStyles();
