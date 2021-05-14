@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   searchIcon: {
     marginLeft: '10px',
     marginRight: '10px',
+    marginBottom: '5px',
     color: '#00000099',
   },
 

@@ -5,6 +5,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#F5F5F5',
     paddingTop: '60px',
   },
+
+  btnContainer: {
+    marginTop: '20px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
 }));
 
 export default useStyles;

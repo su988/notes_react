@@ -13,7 +13,9 @@ function App() {
       <div className={classes.mainApp}>
         <Layout>
           <SearchBar />
-          <FormModal />
+          <div className={classes.btnContainer}>
+            <FormModal />
+          </div>
         </Layout>
       </div>
     </>

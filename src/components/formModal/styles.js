@@ -7,12 +7,12 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: '60px',
+    marginTop: '120px',
     marginLeft: '-15px',
     height: '456px',
     width: '824px',
     boxShadow: theme.shadows[5],
-    borderRadius: '6px',
+    borderRadius: '4px',
     padding: theme.spacing(2, 4, 3),
   },
 }));
