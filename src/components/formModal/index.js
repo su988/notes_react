@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import NoteForm from '../noteForm';
 
 import useStyles from './styles';
 
@@ -37,7 +38,13 @@ export default function FormModal({ children }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>{children}</div>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title" className={classes.title}>
+              Add Note
+            </h2>
+            <hr className={classes.line} />
+            <NoteForm handleClose={handleClose} />
+          </div>
         </Fade>
       </Modal>
     </div>

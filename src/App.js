@@ -7,6 +7,7 @@ import useStyles from './styles';
 
 function App() {
   const classes = useStyles();
+
   return (
     <>
       <CssBaseline />
@@ -14,8 +15,10 @@ function App() {
         <Layout>
           <SearchBar />
           <div className={classes.btnContainer}>
+            <div>Tabs</div>
             <FormModal />
           </div>
+          {/* <NotesList /> */}
         </Layout>
       </div>
     </>
