@@ -1,5 +1,7 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Layout from './components/Layout';
+import Layout from './components/layout';
+import SearchBar from './components/searchBar';
+import FormModal from './components/formModal';
 
 import useStyles from './styles';
 
@@ -8,9 +10,12 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <div className={classes.app}>
+      <div className={classes.mainApp}>
         <Layout>
-          <div>hello worl</div>
+          <SearchBar />
+          <div className={classes.btnContainer}>
+            <FormModal />
+          </div>
         </Layout>
       </div>
     </>
