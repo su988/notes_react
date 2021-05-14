@@ -1,10 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  input: {
-    // '&::placeholder': { color: 'red' },
-  },
-
   form: {
     padding: '20px 30px',
   },
@@ -18,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
 
-  title: {
+  textTitle: {
     marginBottom: '30px',
   },
 
@@ -27,17 +23,42 @@ const useStyles = makeStyles((theme) => ({
     height: '44px',
     borderRadius: '4px',
     backgroundColor: '#F4F4F4',
+    paddingLeft: '10px',
+  },
+
+  input: {
+    backgroundColor: '#F4F4F4',
+    minHeight: '220px',
+    maxWidth: '475px',
   },
 
   description: {
     borderRadius: '4px',
-    height: '227px',
     backgroundColor: '#F4F4F4',
+    maxHeight: '227px',
+    paddingTop: '10px',
+    paddingLeft: '5px',
   },
 
   formControl: {
-    minWidth: '246px',
+    minWidth: '247px',
     marginLeft: '20px',
+    marginTop: '-15px',
+    borderRadius: '4px',
+  },
+
+  inputLabel: {
+    backgroundColor: '#F4F4F4',
+    height: '44px',
+    width: '247px',
+    marginTop: '-10px',
+    paddingTop: '15px',
+    paddingLeft: '10px',
+  },
+
+  select: {
+    paddingTop: '5px',
+    paddingLeft: '10px',
   },
 
   btnContainer: {

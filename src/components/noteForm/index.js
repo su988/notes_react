@@ -37,15 +37,11 @@ function NoteForm({ handleClose }) {
                   InputProps={{
                     disableUnderline: true,
                     className: classes.inputTitle,
-                    classes: {
-                      input: classes.input,
-                    },
                   }}
-                  variant="filled"
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  className={classes.title}
+                  className={classes.textTitle}
                   helperText={error ? error.message : null}
                 />
               )}
@@ -61,6 +57,7 @@ function NoteForm({ handleClose }) {
               }) => (
                 <TextField
                   placeholder="Add description..."
+                  multiline
                   InputProps={{
                     disableUnderline: true,
                     className: classes.description,
@@ -68,7 +65,6 @@ function NoteForm({ handleClose }) {
                       input: classes.input,
                     },
                   }}
-                  variant="filled"
                   value={value}
                   onChange={onChange}
                   className={classes.description}
@@ -79,30 +75,38 @@ function NoteForm({ handleClose }) {
             />
           </div>
 
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Controller
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
+          <Controller
+            name="category"
+            rules={{ required: 'Category is required' }}
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <FormControl className={classes.formControl}>
+                <InputLabel shrink={false} className={classes.inputLabel}>
+                  {value ? '' : 'Select Category'}
+                </InputLabel>
                 <Select
                   value={value}
                   onChange={onChange}
+                  MenuProps={{
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    },
+                    getContentAnchorEl: null,
+                  }}
                   error={!!error}
                   helpertext={error ? error.message : null}
+                  disableUnderline
+                  className={classes.select}
                 >
                   <MenuItem value="home">Home</MenuItem>
                   <MenuItem value="work">Work</MenuItem>
                   <MenuItem value="personal">Personal</MenuItem>
                 </Select>
-              )}
-              name="category"
-              rules={{ required: 'Category is required' }}
-              control={control}
-              defaultValue=""
-            />
-          </FormControl>
+              </FormControl>
+            )}
+          />
         </div>
 
         <div className={classes.btnContainer}>
