@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import date from 'date-and-time';
+import FormModal from '../formModal';
 
 import useStyles from './styles';
 

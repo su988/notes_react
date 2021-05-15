@@ -4,11 +4,9 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-import NoteForm from '../noteForm';
-
 import useStyles from './styles';
 
-export default function FormModal({ setNotes, openModal, handleClose }) {
+export default function FormModal({ openModal, handleClose, title, children }) {
   const classes = useStyles();
 
   return (
@@ -28,10 +26,10 @@ export default function FormModal({ setNotes, openModal, handleClose }) {
         <Fade in={openModal}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title" className={classes.title}>
-              Add Note
+              {title}
             </h2>
             <hr className={classes.line} />
-            <NoteForm handleClose={handleClose} setNotes={setNotes} />
+            {children}
           </div>
         </Fade>
       </Modal>
