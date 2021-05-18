@@ -6,7 +6,7 @@ import Fade from '@material-ui/core/Fade';
 
 import useStyles from './styles';
 
-export default function FormModal({ openModal, handleClose, title, children }) {
+export default function FormModal({ openModal, handleClose, children }) {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,7 @@ export default function FormModal({ openModal, handleClose, title, children }) {
         <Fade in={openModal}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title" className={classes.title}>
-              {title}
+              Add Note
             </h2>
             <hr className={classes.line} />
             {children}

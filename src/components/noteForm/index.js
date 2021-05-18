@@ -7,11 +7,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import date from 'date-and-time';
-import FormModal from '../formModal';
 
 import useStyles from './styles';
 
-function NoteForm({ handleClose, setNotes }) {
+function NoteForm({ handleClose, setNotes, notes }) {
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
 

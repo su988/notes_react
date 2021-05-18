@@ -11,7 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useStyles from './styles';
 
 function NoteCard({
-  note: { title, description, category, date, completed },
+  note: { title, description, category, date, id },
   handleOpen,
 }) {
   const classes = useStyles();

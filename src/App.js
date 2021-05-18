@@ -37,11 +37,7 @@ function App() {
             <div>Tabs</div>
             <ModalButton handleOpen={handleOpen} />
           </div>
-          <FormModal
-            openModal={openModal}
-            handleClose={handleClose}
-            title="Add Note"
-          >
+          <FormModal openModal={openModal} handleClose={handleClose}>
             <NoteForm
               setNotes={setNotes}
               handleClose={handleClose}
