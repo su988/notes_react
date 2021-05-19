@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import date from 'date-and-time';
 
 import useStyles from './styles';
 
@@ -22,6 +23,8 @@ function EditNoteForm({
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
+    const now = new Date();
+    const newDate = date.format(now, 'MMM DD, YYYY');
     const editedNotes = notes.map((note) => {
       if (id === note.id) {
         return {
@@ -29,6 +32,7 @@ function EditNoteForm({
           title: data.title,
           description: data.description,
           category: data.category,
+          date: newDate,
         };
       }
       return note;
