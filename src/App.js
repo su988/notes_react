@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from './components/layout';
 import SearchBar from './components/searchBar';
 import FormModal from './components/formModal';
-import NoteForm from './components/noteForm';
+import AddNoteForm from './components/addNoteForm';
 import ModalButton from './components/modalButton';
 import NoteList from './components/noteList';
 
@@ -42,14 +42,14 @@ function App() {
             handleClose={handleClose}
             title="Add Note"
           >
-            <NoteForm
+            <AddNoteForm
               setNotes={setNotes}
               handleClose={handleClose}
               notes={notes}
             />
           </FormModal>
 
-          <NoteList notes={notes} handleOpen={handleOpen} />
+          <NoteList notes={notes} setNotes={setNotes} />
         </Layout>
       </div>
     </>

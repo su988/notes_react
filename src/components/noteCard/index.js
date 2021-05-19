@@ -7,18 +7,35 @@ import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormModal from '../formModal';
+import EditNoteForm from '../editNoteForm';
 
 import useStyles from './styles';
 
 function NoteCard({
-  note: { title, description, category, date, completed },
-  handleOpen,
+  note: { title, description, category, date, id },
+  setNotes,
+  notes,
 }) {
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+  };
+
+  const handleDelete = () => {
+    const filteredNotes = notes.filter((note) => note.id !== id);
+    setNotes(filteredNotes);
   };
 
   return (
@@ -41,7 +58,7 @@ function NoteCard({
               <IconButton onClick={handleOpen} className={classes.editBtn}>
                 <EditIcon />
               </IconButton>
-              <IconButton className={classes.deleteBtn}>
+              <IconButton onClick={handleDelete} className={classes.deleteBtn}>
                 <DeleteIcon />
               </IconButton>
             </CardActions>
@@ -59,6 +76,21 @@ function NoteCard({
             {date}
           </Typography>
         </CardContent>
+        <FormModal
+          openModal={openModal}
+          handleClose={handleClose}
+          title="Update Note"
+        >
+          <EditNoteForm
+            handleClose={handleClose}
+            title={title}
+            description={description}
+            category={category}
+            id={id}
+            notes={notes}
+            setNotes={setNotes}
+          />
+        </FormModal>
       </Card>
     </>
   );

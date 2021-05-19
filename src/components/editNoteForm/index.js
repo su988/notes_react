@@ -6,25 +6,34 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import date from 'date-and-time';
-import FormModal from '../formModal';
 
 import useStyles from './styles';
 
-function NoteForm({ handleClose, setNotes }) {
+function EditNoteForm({
+  handleClose,
+  title,
+  description,
+  category,
+  id,
+  notes,
+  setNotes,
+}) {
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    handleClose();
-    // check if note exists, then edit
-    // ....
-
-    // create new note
-    const now = new Date();
-    const newDate = date.format(now, 'MMM DD, YYYY');
-    const newData = { ...data, completed: false, date: newDate };
-    setNotes((prev) => [...prev, newData]);
+    const editedNotes = notes.map((note) => {
+      if (id === note.id) {
+        return {
+          ...note,
+          title: data.title,
+          description: data.description,
+          category: data.category,
+        };
+      }
+      return note;
+    });
+    setNotes(editedNotes);
   };
 
   return (
@@ -35,7 +44,7 @@ function NoteForm({ handleClose, setNotes }) {
             <Controller
               name="title"
               control={control}
-              defaultValue=""
+              defaultValue={title}
               rules={{ required: 'Title is required' }}
               render={({
                 field: { onChange, value },
@@ -58,7 +67,7 @@ function NoteForm({ handleClose, setNotes }) {
             <Controller
               name="description"
               control={control}
-              defaultValue=""
+              defaultValue={description}
               rules={{ required: 'Description required' }}
               render={({
                 field: { onChange, value },
@@ -88,7 +97,7 @@ function NoteForm({ handleClose, setNotes }) {
             name="category"
             rules={{ required: 'Category is required' }}
             control={control}
-            defaultValue=""
+            defaultValue={category}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel shrink={false} className={classes.inputLabel}>
@@ -123,7 +132,7 @@ function NoteForm({ handleClose, setNotes }) {
             Cancel
           </Button>
           <Button type="submit" className={classes.btn}>
-            Add
+            Edit
           </Button>
         </div>
       </form>
@@ -131,4 +140,4 @@ function NoteForm({ handleClose, setNotes }) {
   );
 }
 
-export default NoteForm;
+export default EditNoteForm;

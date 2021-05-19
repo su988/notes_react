@@ -4,10 +4,10 @@ import NoteCard from '../noteCard';
 
 import useStyles from './styles';
 
-function NoteList({ notes, handleOpen }) {
+function NoteList({ notes, setNotes }) {
   const classes = useStyles();
   const noteItems = notes.map((note) => (
-    <NoteCard note={note} handleOpen={handleOpen} key={uuidv4()} />
+    <NoteCard note={note} setNotes={setNotes} notes={notes} key={uuidv4()} />
   ));
   return (
     <>
