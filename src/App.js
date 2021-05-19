@@ -12,6 +12,7 @@ import useStyles from './styles';
 function App() {
   const classes = useStyles();
   const [notes, setNotes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {
@@ -27,7 +28,7 @@ function App() {
       <CssBaseline />
       <div className={classes.mainApp}>
         <Layout>
-          <SearchBar />
+          <SearchBar notes={notes} setSearchTerm={setSearchTerm} />
           <div className={classes.btnContainer}>
             {/* pass notes n setNotes to Tabs 
             when user click tab === category
@@ -49,7 +50,7 @@ function App() {
             />
           </FormModal>
 
-          <NoteList notes={notes} setNotes={setNotes} />
+          <NoteList notes={notes} setNotes={setNotes} searchTerm={searchTerm} />
         </Layout>
       </div>
     </>

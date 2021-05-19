@@ -4,8 +4,13 @@ import TextField from '@material-ui/core/TextField';
 
 import useStyles from './styles';
 
-function Searchbar() {
+function Searchbar({ setSearchTerm }) {
   const classes = useStyles();
+
+  const handleChange = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <div className={classes.searchContainer}>
       <SearchIcon className={classes.searchIcon} />
@@ -13,6 +18,7 @@ function Searchbar() {
         placeholder="Search notes..."
         InputProps={{ disableUnderline: true }}
         className={classes.searchInput}
+        onChange={(event) => handleChange(event.target.value)}
       />
     </div>
   );
