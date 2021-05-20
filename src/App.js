@@ -4,6 +4,7 @@ import Layout from './components/layout';
 import SearchBar from './components/searchBar';
 import FormModal from './components/formModal';
 import AddNoteForm from './components/addNoteForm';
+import FilterTabs from './components/filterTabs';
 import ModalButton from './components/modalButton';
 import NoteList from './components/noteList';
 
@@ -13,6 +14,7 @@ function App() {
   const classes = useStyles();
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [categoryTab, setCategoryTab] = useState('');
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {
@@ -30,12 +32,7 @@ function App() {
         <Layout>
           <SearchBar notes={notes} setSearchTerm={setSearchTerm} />
           <div className={classes.btnContainer}>
-            {/* pass notes n setNotes to Tabs 
-            when user click tab === category
-            create filteredNote state in component 
-            setFilteredNote(notes.filter(category))
-            setNote(fitleredNote)  */}
-            <div>Tabs</div>
+            <FilterTabs setCategoryTab={setCategoryTab} />
             <ModalButton handleOpen={handleOpen} />
           </div>
           <FormModal
@@ -50,7 +47,12 @@ function App() {
             />
           </FormModal>
 
-          <NoteList notes={notes} setNotes={setNotes} searchTerm={searchTerm} />
+          <NoteList
+            notes={notes}
+            setNotes={setNotes}
+            searchTerm={searchTerm}
+            categoryTab={categoryTab}
+          />
         </Layout>
       </div>
     </>
