@@ -6,6 +6,8 @@ import FormModal from './components/formModal';
 import AddNoteForm from './components/addNoteForm';
 import FilterTabs from './components/filterTabs';
 import ModalButton from './components/modalButton';
+import ProgressBar from './components/progressBar';
+import Image from './components/image';
 import NoteList from './components/noteList';
 
 import useStyles from './styles';
@@ -46,13 +48,21 @@ function App() {
               notes={notes}
             />
           </FormModal>
-
-          <NoteList
-            notes={notes}
-            setNotes={setNotes}
-            searchTerm={searchTerm}
-            categoryTab={categoryTab}
-          />
+          <ProgressBar notes={notes} />
+          {notes.length === 0 ? (
+            <Image
+              handleOpen={handleOpen}
+              title="You don't have any notes"
+              url="add"
+            />
+          ) : (
+            <NoteList
+              notes={notes}
+              setNotes={setNotes}
+              searchTerm={searchTerm}
+              categoryTab={categoryTab}
+            />
+          )}
         </Layout>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import NoteCard from '../noteCard';
+import Image from '../image';
 
 import useStyles from './styles';
 
@@ -35,7 +36,11 @@ function NoteList({ notes, setNotes, searchTerm, categoryTab }) {
 
   return (
     <>
-      <div className={classes.cardContainer}>{noteItems}</div>
+      {noteItems.length === 0 ? (
+        <Image title="Couldn't find any notes" url="search" />
+      ) : (
+        <div className={classes.cardContainer}>{noteItems}</div>
+      )}
     </>
   );
 }

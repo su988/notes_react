@@ -13,7 +13,7 @@ import EditNoteForm from '../editNoteForm';
 import useStyles from './styles';
 
 function NoteCard({
-  note: { title, description, category, date, id },
+  note: { title, description, category, date, id, completed },
   setNotes,
   notes,
 }) {
@@ -30,7 +30,12 @@ function NoteCard({
   };
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    const completedNotes = notes.forEach((note) => {
+      return { ...note, completed: event.target.checked };
+    });
+
+    console.log(completedNotes);
+    console.log('done');
   };
 
   const handleDelete = () => {
