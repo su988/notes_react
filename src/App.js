@@ -14,7 +14,7 @@ function App() {
   const classes = useStyles();
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [categoryTab, setCategoryTab] = useState('');
+  const [categoryTab, setCategoryTab] = useState('all');
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {

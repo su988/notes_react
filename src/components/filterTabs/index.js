@@ -26,13 +26,22 @@ export default function FilterTabs({ setCategoryTab }) {
     <Tabs
       value={value}
       onChange={handleChange}
-      indicatorColor="primary"
-      textColor="primary"
+      TabIndicatorProps={{
+        style: {
+          width: '8px',
+          height: '8px',
+          borderRadius: '50%',
+          marginLeft: '75px',
+          backgroundColor: '',
+        },
+      }}
+      className={classes.tabs}
+      centered
     >
-      <Tab label="All" />
-      <Tab label="Home" />
-      <Tab label="Work" />
-      <Tab label="Personal" />
+      <Tab className={classes.tab} disableRipple label="All" />
+      <Tab className={classes.tab} disableRipple label="Home" />
+      <Tab className={classes.tab} disableRipple label="Work" />
+      <Tab className={classes.tab} disableRipple label="Personal" />
     </Tabs>
   );
 }

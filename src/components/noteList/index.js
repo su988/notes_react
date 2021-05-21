@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import NoteCard from '../noteCard';
 
@@ -6,10 +6,6 @@ import useStyles from './styles';
 
 function NoteList({ notes, setNotes, searchTerm, categoryTab }) {
   const classes = useStyles();
-
-  useEffect(() => {
-    console.log(categoryTab);
-  }, [categoryTab]);
 
   const noteItems = notes
     .filter((note) => {

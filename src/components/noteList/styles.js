@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
   cardContainer: {
     display: 'flex',
     flexWrap: 'wrap',
+    marginTop: '40px',
   },
 }));
 
