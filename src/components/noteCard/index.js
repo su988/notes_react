@@ -18,8 +18,8 @@ function NoteCard({
   notes,
 }) {
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  // const [checked, setChecked] = useState(false);
 
   const handleOpen = () => {
     setOpenModal(true);
@@ -29,13 +29,15 @@ function NoteCard({
     setOpenModal(false);
   };
 
-  const handleChange = (event) => {
-    const completedNotes = notes.forEach((note) => {
-      return { ...note, completed: event.target.checked };
-    });
-
-    console.log(completedNotes);
-    console.log('done');
+  const handleCheck = (event) => {
+    setNotes(
+      notes.map((note) => {
+        if (note.id === id) {
+          return { ...note, completed: !note.completed };
+        }
+        return note;
+      }),
+    );
   };
 
   const handleDelete = () => {
@@ -46,12 +48,12 @@ function NoteCard({
   return (
     <>
       <Card className={classes.root}>
-        <CardContent className={checked ? classes.done : classes[category]}>
+        <CardContent className={completed ? classes.done : classes[category]}>
           <div className={classes.header}>
             <div className={classes.headerLeft}>
               <Checkbox
-                checked={checked}
-                onChange={handleChange}
+                checked={completed}
+                onChange={handleCheck}
                 className={classes.checkbox}
               />
               <Typography variant="h5" component="h2" className={classes.title}>
