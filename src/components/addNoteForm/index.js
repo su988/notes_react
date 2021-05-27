@@ -6,21 +6,16 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import date from 'date-and-time';
-import { v4 as uuidv4 } from 'uuid';
 
 import useStyles from './styles';
 
-function AddNoteForm({ handleClose, setNotes }) {
-  const classes = useStyles();
+function AddNoteForm({ handleClose, addNote }) {
   const { handleSubmit, control } = useForm();
+  const classes = useStyles();
 
   const onSubmit = (data) => {
+    addNote(data);
     handleClose();
-    const now = new Date();
-    const newDate = date.format(now, 'MMM DD, YYYY');
-    const newData = { ...data, completed: false, date: newDate, id: uuidv4() };
-    setNotes((prev) => [...prev, newData]);
   };
 
   return (

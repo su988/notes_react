@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormModal from '../formModal';
 import EditNoteForm from '../editNoteForm';
+import { useNotes } from '../../hooks/useNotes';
 
 import useStyles from './styles';
 
@@ -19,7 +20,7 @@ function NoteCard({
 }) {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  // const [checked, setChecked] = useState(false);
+  const { deleteNote } = useNotes(notes);
 
   const handleOpen = () => {
     setOpenModal(true);
@@ -29,7 +30,7 @@ function NoteCard({
     setOpenModal(false);
   };
 
-  const handleCheck = (event) => {
+  const handleCheck = () => {
     setNotes(
       notes.map((note) => {
         if (note.id === id) {
@@ -41,8 +42,7 @@ function NoteCard({
   };
 
   const handleDelete = () => {
-    const filteredNotes = notes.filter((note) => note.id !== id);
-    setNotes(filteredNotes);
+    deleteNote(id);
   };
 
   return (
@@ -62,10 +62,18 @@ function NoteCard({
             </div>
 
             <CardActions className={classes.headerRight}>
-              <IconButton onClick={handleOpen} className={classes.editBtn}>
+              <IconButton
+                disabled={completed}
+                onClick={handleOpen}
+                className={classes.editBtn}
+              >
                 <EditIcon />
               </IconButton>
-              <IconButton onClick={handleDelete} className={classes.deleteBtn}>
+              <IconButton
+                disabled={completed}
+                onClick={handleDelete}
+                className={classes.deleteBtn}
+              >
                 <DeleteIcon />
               </IconButton>
             </CardActions>

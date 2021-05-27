@@ -5,10 +5,11 @@ import Image from '../image';
 
 import useStyles from './styles';
 
-function NoteList({ notes, setNotes, searchTerm, categoryTab }) {
+function NoteList({ notes, setNotes, searchTerm, categoryTab, editNote }) {
   const classes = useStyles();
 
   const noteItems = notes
+    // filter only once instead
     .filter((note) => {
       if (searchTerm === '') {
         return note;
@@ -30,6 +31,7 @@ function NoteList({ notes, setNotes, searchTerm, categoryTab }) {
           setNotes={setNotes}
           notes={notes}
           key={uuidv4()}
+          editNote={editNote}
         />
       );
     });
