@@ -78,11 +78,7 @@ function App() {
         handleClose={handleCloseNew}
         title="Add Note"
       >
-        <AddNoteForm
-          handleClose={handleCloseNew}
-          notes={notes}
-          addNote={addNote}
-        />
+        <AddNoteForm handleClose={handleCloseNew} addNote={addNote} />
       </FormModal>
 
       <FormModal
