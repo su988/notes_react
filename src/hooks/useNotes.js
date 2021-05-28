@@ -16,9 +16,8 @@ export const useNotes = (initialNotes = []) => {
   };
 
   const editNote = (data, id) => {
-    console.log(notes);
-    return setNotes(
-      notes.map((note) => {
+    setNotes((prev) =>
+      prev.map((note) => {
         if (id === note.id) {
           return {
             ...note,
@@ -35,20 +34,24 @@ export const useNotes = (initialNotes = []) => {
 
   const deleteNote = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
-    // console.log(id);
-    // console.log(notes);
   };
 
-  const toggleComplete = () => {};
-
-  // const handleSearch = () => {};
-  // const filteredNotes = initialNotes.filter;
+  const toggleComplete = (id) => {
+    setNotes((prev) =>
+      prev.map((note) => {
+        if (note.id === id) {
+          return { ...note, completed: !note.completed };
+        }
+        return note;
+      }),
+    );
+  };
 
   return {
     notes,
     addNote,
     editNote,
-    toggleComplete,
     deleteNote,
+    toggleComplete,
   };
 };

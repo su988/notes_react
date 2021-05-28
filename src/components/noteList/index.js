@@ -5,7 +5,16 @@ import Image from '../image';
 
 import useStyles from './styles';
 
-function NoteList({ notes, setNotes, searchTerm, categoryTab, editNote }) {
+function NoteList({
+  notes,
+  searchTerm,
+  categoryTab,
+  editNote,
+  deleteNote,
+  toggleComplete,
+  handleOpen,
+  setCurrentId,
+}) {
   const classes = useStyles();
 
   const noteItems = notes
@@ -28,10 +37,12 @@ function NoteList({ notes, setNotes, searchTerm, categoryTab, editNote }) {
       return (
         <NoteCard
           note={note}
-          setNotes={setNotes}
-          notes={notes}
           key={uuidv4()}
           editNote={editNote}
+          deleteNote={deleteNote}
+          toggleComplete={toggleComplete}
+          handleOpen={handleOpen}
+          setCurrentId={setCurrentId}
         />
       );
     });

@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { Modal, Backdrop, Fade, Typography, Box } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -10,7 +8,7 @@ export default function FormModal({ openModal, handleClose, title, children }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <Box>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -24,15 +22,19 @@ export default function FormModal({ openModal, handleClose, title, children }) {
         }}
       >
         <Fade in={openModal}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title" className={classes.title}>
+          <Box className={classes.paper}>
+            <Typography
+              variant="h1"
+              id="transition-modal-title"
+              className={classes.title}
+            >
               {title}
-            </h2>
+            </Typography>
             <hr className={classes.line} />
             {children}
-          </div>
+          </Box>
         </Fade>
       </Modal>
-    </div>
+    </Box>
   );
 }

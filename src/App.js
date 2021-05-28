@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useState, useEffect } from 'react';
+import { CssBaseline, Box } from '@material-ui/core';
 import Layout from './components/layout';
 import { SearchBar } from './components/searchBar';
 import FormModal from './components/formModal';
 import AddNoteForm from './components/addNoteForm';
+import { EditNoteForm } from './components/editNoteForm';
 import { FilterTabs } from './components/filterTabs';
 import ModalButton from './components/modalButton';
 import ProgressBar from './components/progressBar';
@@ -11,28 +12,30 @@ import Image from './components/image';
 import NoteList from './components/noteList';
 
 import { useNotes } from './hooks/useNotes';
+import { useModals } from './hooks/useModals';
+
 import useStyles from './styles';
 
 function App() {
-  const { notes, addNote } = useNotes();
+  const { notes, addNote, editNote, deleteNote, toggleComplete } = useNotes();
+  const {
+    openNew,
+    handleOpenNew,
+    handleCloseNew,
+    openEdit,
+    handleOpenEdit,
+    handleCloseEdit,
+  } = useModals();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryTab, setCategoryTab] = useState('all');
-  const [openModal, setOpenModal] = useState(false);
+  const [currentId, setCurrentId] = useState();
+  const [selectedNote, setSelectedNote] = useState({});
+
   const classes = useStyles();
 
-  // Yes, you will have a lot of code here to handle
-  // which is considered business logic and for that you
-  // should use custom hooks
-  // const { filteredNotes, deleteNote, editNote, markAsCompleted} = useNotes(notes, searchTerm, categoryTab);
-  // const { } = useModals()
-
-  const handleOpen = () => {
-    setOpenModal(true);
-  };
-
-  const handleClose = () => {
-    setOpenModal(false);
-  };
+  useEffect(() => {
+    setSelectedNote(notes.find((note) => note.id === currentId));
+  }, [currentId, notes]);
 
   const handleSearchTermChange = (e) => {
     setSearchTerm(e.target.value);
@@ -41,44 +44,60 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <div className={classes.mainApp}>
+      <Box className={classes.mainApp}>
         <Layout>
           <SearchBar onSearchTermChange={handleSearchTermChange} />
-          <div className={classes.btnContainer}>
-            <FilterTabs setCategoryTab={setCategoryTab} />
-            <ModalButton handleOpen={handleOpen} />
-          </div>
+          <Box className={classes.btnContainer}>
+            <FilterTabs setCategoryTab={setCategoryTab} notes={notes} />
+            <ModalButton handleOpen={handleOpenNew} />
+          </Box>
 
           <ProgressBar notes={notes} />
           {notes.length === 0 ? (
             <Image
-              handleOpen={handleOpen}
+              handleOpen={handleOpenNew}
               title="You don't have any notes"
               url="add"
             />
           ) : (
             <NoteList
               notes={notes}
-              handleClose={handleClose}
+              handleOpen={handleOpenEdit}
               searchTerm={searchTerm}
               categoryTab={categoryTab}
+              editNote={editNote}
+              deleteNote={deleteNote}
+              toggleComplete={toggleComplete}
+              setCurrentId={setCurrentId}
             />
           )}
         </Layout>
-      </div>
+      </Box>
       <FormModal
-        openModal={openModal}
-        handleClose={handleClose}
+        openModal={openNew}
+        handleClose={handleCloseNew}
         title="Add Note"
       >
         <AddNoteForm
-          handleClose={handleClose}
+          handleClose={handleCloseNew}
           notes={notes}
           addNote={addNote}
         />
       </FormModal>
-      {/* // TODO: Add EditModal here as well to prevent rendering multiple times of
-      it + add a new variable to keep edit notes */}
+
+      <FormModal
+        openModal={openEdit}
+        handleClose={handleCloseEdit}
+        title="Update Note"
+      >
+        <EditNoteForm
+          handleClose={handleCloseEdit}
+          selectedNote={selectedNote}
+          id={currentId}
+          notes={notes}
+          editNote={editNote}
+        />
+      </FormModal>
     </>
   );
 }

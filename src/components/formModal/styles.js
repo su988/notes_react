@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: '#00000099',
     marginLeft: '40px',
+    fontSize: '24px',
+    padding: '15px 0 10px 0',
   },
 
   line: {

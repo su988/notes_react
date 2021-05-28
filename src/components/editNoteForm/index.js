@@ -1,24 +1,23 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import { useNotes } from '../../hooks/useNotes';
+import {
+  Box,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from '@material-ui/core';
 
 import useStyles from './styles';
 
-function EditNoteForm({
+export const EditNoteForm = ({
   handleClose,
-  title,
-  description,
-  category,
   id,
-  notes,
-}) {
-  const { editNote } = useNotes(notes);
+  editNote,
+  selectedNote: { title, description, category },
+}) => {
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
 
@@ -30,8 +29,8 @@ function EditNoteForm({
   return (
     <>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={classes.inputContainer}>
-          <div className={classes.textfield}>
+        <Box className={classes.inputContainer}>
+          <Box className={classes.textfield}>
             <Controller
               name="title"
               control={control}
@@ -82,7 +81,7 @@ function EditNoteForm({
                 />
               )}
             />
-          </div>
+          </Box>
 
           <Controller
             name="category"
@@ -116,19 +115,17 @@ function EditNoteForm({
               </FormControl>
             )}
           />
-        </div>
+        </Box>
 
-        <div className={classes.btnContainer}>
+        <Box className={classes.btnContainer}>
           <Button onClick={handleClose} className={classes.btn}>
             Cancel
           </Button>
           <Button type="submit" className={classes.btn}>
             Edit
           </Button>
-        </div>
+        </Box>
       </form>
     </>
   );
-}
-
-export default EditNoteForm;
+};
