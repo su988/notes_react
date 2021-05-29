@@ -48,7 +48,7 @@ function App() {
         <Layout>
           <SearchBar onSearchTermChange={handleSearchTermChange} />
           <Box className={classes.btnContainer}>
-            <FilterTabs setCategoryTab={setCategoryTab} notes={notes} />
+            <FilterTabs setCategoryTab={setCategoryTab} />
             <ModalButton handleOpen={handleOpenNew} />
           </Box>
 
@@ -90,7 +90,6 @@ function App() {
           handleClose={handleCloseEdit}
           selectedNote={selectedNote}
           id={currentId}
-          notes={notes}
           editNote={editNote}
         />
       </FormModal>

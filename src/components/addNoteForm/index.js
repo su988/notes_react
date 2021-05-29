@@ -1,12 +1,16 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import {
+  Box,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from '@material-ui/core';
 
+// import clsx from 'clsx';
 import useStyles from './styles';
 
 function AddNoteForm({ handleClose, addNote }) {
@@ -21,8 +25,8 @@ function AddNoteForm({ handleClose, addNote }) {
   return (
     <>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={classes.inputContainer}>
-          <div className={classes.textfield}>
+        <Box className={classes.inputContainer}>
+          <Box className={classes.textfield}>
             <Controller
               name="title"
               control={control}
@@ -73,19 +77,20 @@ function AddNoteForm({ handleClose, addNote }) {
                 />
               )}
             />
-          </div>
+          </Box>
 
           <Controller
             name="category"
-            rules={{ required: 'Category is required' }}
             control={control}
             defaultValue=""
+            rules={{ required: 'Category required' }}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel shrink={false} className={classes.inputLabel}>
                   {value ? '' : 'Select Category'}
                 </InputLabel>
                 <Select
+                  required
                   value={value}
                   onChange={onChange}
                   MenuProps={{
@@ -107,16 +112,16 @@ function AddNoteForm({ handleClose, addNote }) {
               </FormControl>
             )}
           />
-        </div>
+        </Box>
 
-        <div className={classes.btnContainer}>
+        <Box className={classes.btnContainer}>
           <Button onClick={handleClose} className={classes.btn}>
             Cancel
           </Button>
           <Button type="submit" className={classes.btn}>
             Add
           </Button>
-        </div>
+        </Box>
       </form>
     </>
   );

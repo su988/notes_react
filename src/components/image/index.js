@@ -1,13 +1,14 @@
 import React from 'react';
+import { Box } from '@material-ui/core';
 import useStyles from './styles';
 
 function Image({ title, url, handleOpen }) {
   const classes = useStyles();
   return (
-    <div className={classes.imageContainer}>
+    <Box className={classes.imageContainer}>
       <p className={classes.imageTitle}>{title}</p>
-      <div className={classes[url]} onClick={handleOpen}></div>
-    </div>
+      <Box className={classes[url]} onClick={handleOpen}></Box>
+    </Box>
   );
 }
 

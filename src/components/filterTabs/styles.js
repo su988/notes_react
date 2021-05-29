@@ -1,21 +1,29 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-// const mapBackgroundColorToCategoryTab = {
-//   all: 'red',
-//   home: 'blue',
-//   work: 'yellow',
-//   personal: 'green',
-// };
+const mapBackgroundColorToValue = {
+  0: '#69BCFF',
+  1: '#FF9100',
+  2: '#5C6BC0',
+  3: '#66BB6A',
+};
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
+
   tabs: {},
 
-  tab: {
-    // backgroundColor: (props) =>
-    //   mapBackgroundColorToCategoryTab[props.categoryTab],
-    backgroundColor: '#69BCFF',
+  selected: {
+    backgroundColor: (props) => mapBackgroundColorToValue[props.value],
+    color: '#fff',
+    minWidth: '89px',
+    minHeight: '36px',
     marginRight: '2px',
     borderRadius: '8px',
+  },
+
+  tab: {
+    minWidth: '89px',
+    minHeight: '36px',
   },
 }));
 

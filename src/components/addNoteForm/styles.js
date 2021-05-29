@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-10px',
     paddingTop: '15px',
     paddingLeft: '10px',
+    color: '#00000099',
+    '&.Mui-focused': {
+      color: '#00000099',
+    },
   },
 
   select: {
