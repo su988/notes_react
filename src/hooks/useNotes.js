@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { dateFormatter } from '../utils/dateFomatter';
 
 export const useNotes = (initialNotes = []) => {
-  const [notes, setNotes] = useState(initialNotes);
+  const [notes, setNotes] = useState(
+    localStorage.getItem('notes')
+      ? JSON.parse(localStorage.getItem('notes'))
+      : [],
+  );
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   const addNote = (data) => {
     const newData = {

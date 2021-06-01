@@ -125,7 +125,7 @@ export const NoteForm = ({
             Cancel
           </Button>
           <Button type="submit" className={classes.btn}>
-            Add
+            {isEdit ? 'Edit' : 'Add'}
           </Button>
         </Box>
       </form>
