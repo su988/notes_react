@@ -10,9 +10,11 @@ export const useNotes = (initialNotes = []) => {
       ...data,
       completed: false,
       date: dateFormatter(),
+      created_at: new Date(),
       id: uuidv4(),
     };
-    setNotes((prev) => [...prev, newData]);
+
+    setNotes((prev) => [newData, ...prev]);
   };
 
   const editNote = (data, id) => {
