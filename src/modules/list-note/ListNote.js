@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import { v4 as uuidv4 } from 'uuid';
-import { NoteCard } from '../NoteCard';
-import { Image } from '../Image';
+import { NoteCard } from '../../components/NoteCard';
+import { Image } from '../../components/Image';
 
 import useStyles from './styles';
 
-export const NoteList = ({
+export const ListNote = ({
   notes,
   searchTerm,
   category,
