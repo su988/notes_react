@@ -3,8 +3,8 @@ import { CssBaseline, Box } from '@material-ui/core';
 import Layout from './components/layout';
 import { SearchBar } from './components/searchBar';
 import FormModal from './components/formModal';
-import AddNoteForm from './components/addNoteForm';
-import { EditNoteForm } from './components/editNoteForm';
+import { AddNote } from './modules/add-note';
+import { EditNote } from './modules/edit-note';
 import { FilterTabs } from './components/filterTabs';
 import ModalButton from './components/modalButton';
 import ProgressBar from './components/progressBar';
@@ -78,7 +78,7 @@ function App() {
         handleClose={handleCloseNew}
         title="Add Note"
       >
-        <AddNoteForm handleClose={handleCloseNew} addNote={addNote} />
+        <AddNote handleClose={handleCloseNew} addNote={addNote} />
       </FormModal>
 
       <FormModal
@@ -86,7 +86,7 @@ function App() {
         handleClose={handleCloseEdit}
         title="Update Note"
       >
-        <EditNoteForm
+        <EditNote
           handleClose={handleCloseEdit}
           selectedNote={selectedNote}
           id={currentId}

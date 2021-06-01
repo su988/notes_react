@@ -8,10 +8,6 @@ const mapBackgroundColorToValue = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-
-  tabs: {},
-
   selected: {
     backgroundColor: (props) => mapBackgroundColorToValue[props.value],
     color: '#fff',

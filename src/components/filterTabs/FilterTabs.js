@@ -28,8 +28,6 @@ export const FilterTabs = ({ setCategoryTab }) => {
       <Tabs
         value={value}
         onChange={handleChange}
-        // check the classes object to style it
-        // you'll need some dynamic styling
         TabIndicatorProps={{
           style: { display: 'none' },
         }}

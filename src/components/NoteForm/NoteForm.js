@@ -10,15 +10,21 @@ import {
   InputLabel,
 } from '@material-ui/core';
 
-// import clsx from 'clsx';
 import useStyles from './styles';
 
-function AddNoteForm({ handleClose, addNote }) {
+export const NoteForm = ({
+  handleClose,
+  addNote,
+  editNote,
+  id,
+  selectedNote,
+  isEdit,
+}) => {
   const { handleSubmit, control } = useForm();
   const classes = useStyles();
 
   const onSubmit = (data) => {
-    addNote(data);
+    isEdit ? editNote(data, id) : addNote(data);
     handleClose();
   };
 
@@ -30,7 +36,7 @@ function AddNoteForm({ handleClose, addNote }) {
             <Controller
               name="title"
               control={control}
-              defaultValue=""
+              defaultValue={isEdit ? selectedNote.title : ''}
               rules={{ required: 'Title is required' }}
               render={({
                 field: { onChange, value },
@@ -53,7 +59,7 @@ function AddNoteForm({ handleClose, addNote }) {
             <Controller
               name="description"
               control={control}
-              defaultValue=""
+              defaultValue={isEdit ? selectedNote.description : ''}
               rules={{ required: 'Description required' }}
               render={({
                 field: { onChange, value },
@@ -82,7 +88,7 @@ function AddNoteForm({ handleClose, addNote }) {
           <Controller
             name="category"
             control={control}
-            defaultValue=""
+            defaultValue={isEdit ? selectedNote.category : ''}
             rules={{ required: 'Category required' }}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
@@ -125,6 +131,4 @@ function AddNoteForm({ handleClose, addNote }) {
       </form>
     </>
   );
-}
-
-export default AddNoteForm;
+};
