@@ -3,7 +3,7 @@ import { Tabs, Tab, Box } from '@material-ui/core';
 
 import useStyles from './styles';
 
-export const FilterTabs = ({ setCategoryTab }) => {
+export const FilterTabs = ({ onCategoryChange }) => {
   const [value, setValue] = React.useState(0);
   const classes = useStyles({ value });
 
@@ -13,13 +13,13 @@ export const FilterTabs = ({ setCategoryTab }) => {
     setValue(newValue);
 
     if (newValue === 0) {
-      setCategoryTab('all');
+      onCategoryChange('all');
     } else if (newValue === 1) {
-      setCategoryTab('home');
+      onCategoryChange('home');
     } else if (newValue === 2) {
-      setCategoryTab('work');
+      onCategoryChange('work');
     } else if (newValue === 3) {
-      setCategoryTab('personal');
+      onCategoryChange('personal');
     }
   };
 

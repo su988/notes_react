@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Box } from '@material-ui/core';
-import Layout from './components/layout';
+import { Layout } from './components/layout';
 import { SearchBar } from './components/searchBar';
-import FormModal from './components/formModal';
+import { FormModal } from './components/formModal';
 import { AddNote } from './modules/add-note';
 import { EditNote } from './modules/edit-note';
 import { FilterTabs } from './components/filterTabs';
-import ModalButton from './components/modalButton';
-import ProgressBar from './components/progressBar';
-import Image from './components/image';
-import NoteList from './components/noteList';
+import { ModalButton } from './components/modalButton';
+import { ProgressBar } from './components/progressBar';
+import { Image } from './components/image';
+import { NoteList } from './components/noteList';
 
 import { useNotes } from './hooks/useNotes';
 import { useModals } from './hooks/useModals';
+import { useInputs } from './hooks/useInputs';
 
 import useStyles from './styles';
 
-function App() {
+export const App = () => {
   const { notes, addNote, editNote, deleteNote, toggleComplete } = useNotes();
   const {
     openNew,
@@ -26,8 +27,8 @@ function App() {
     handleOpenEdit,
     handleCloseEdit,
   } = useModals();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [categoryTab, setCategoryTab] = useState('all');
+  const { searchTerm, handleSearchTermChange, category, handleCategoryChange } =
+    useInputs();
   const [currentId, setCurrentId] = useState();
   const [selectedNote, setSelectedNote] = useState({});
 
@@ -37,10 +38,6 @@ function App() {
     setSelectedNote(notes.find((note) => note.id === currentId));
   }, [currentId, notes]);
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <>
       <CssBaseline />
@@ -48,7 +45,7 @@ function App() {
         <Layout>
           <SearchBar onSearchTermChange={handleSearchTermChange} />
           <Box className={classes.btnContainer}>
-            <FilterTabs setCategoryTab={setCategoryTab} />
+            <FilterTabs onCategoryChange={handleCategoryChange} />
             <ModalButton handleOpen={handleOpenNew} />
           </Box>
 
@@ -64,7 +61,7 @@ function App() {
               notes={notes}
               handleOpen={handleOpenEdit}
               searchTerm={searchTerm}
-              categoryTab={categoryTab}
+              category={category}
               editNote={editNote}
               deleteNote={deleteNote}
               toggleComplete={toggleComplete}
@@ -95,6 +92,4 @@ function App() {
       </FormModal>
     </>
   );
-}
-
-export default App;
+};
