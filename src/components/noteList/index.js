@@ -31,22 +31,11 @@ function NoteList({
   const noteItems =
     sortedNotes &&
     sortedNotes
-      // filter only once instead
       .filter((note) => {
-        if (searchTerm === '') {
-          return note;
-        } else if (
-          note.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return note;
-        }
-      })
-      .filter((note) => {
-        if (note.category === categoryTab) {
-          return note;
-        } else if (categoryTab === 'all') {
-          return note;
-        }
+        return note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          categoryTab === 'all'
+          ? note
+          : note.category === categoryTab;
       })
       .map((note) => {
         return (
