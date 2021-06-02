@@ -18,7 +18,8 @@ import { useInputs } from './hooks/useInputs';
 import useStyles from './styles';
 
 export const App = () => {
-  const { notes, addNote, editNote, deleteNote, toggleComplete } = useNotes();
+  const { sortedNotes, addNote, editNote, deleteNote, toggleComplete } =
+    useNotes();
   const {
     openNew,
     handleOpenNew,
@@ -26,6 +27,9 @@ export const App = () => {
     openEdit,
     handleOpenEdit,
     handleCloseEdit,
+    openDelete,
+    handleOpenDelete,
+    handleCloseDelete,
   } = useModals();
   const { searchTerm, handleSearchTermChange, category, handleCategoryChange } =
     useInputs();
@@ -35,8 +39,8 @@ export const App = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    setSelectedNote(notes.find((note) => note.id === currentId));
-  }, [currentId, notes]);
+    setSelectedNote(sortedNotes.find((note) => note.id === currentId));
+  }, [currentId, sortedNotes]);
 
   return (
     <>
@@ -49,8 +53,8 @@ export const App = () => {
             <ModalButton handleOpen={handleOpenNew} />
           </Box>
 
-          <ProgressBar notes={notes} />
-          {notes.length === 0 ? (
+          <ProgressBar notes={sortedNotes} />
+          {sortedNotes.length === 0 ? (
             <Image
               handleOpen={handleOpenNew}
               title="You don't have any notes"
@@ -58,14 +62,18 @@ export const App = () => {
             />
           ) : (
             <ListNote
-              notes={notes}
+              notes={sortedNotes}
               handleOpen={handleOpenEdit}
               searchTerm={searchTerm}
               category={category}
               editNote={editNote}
-              deleteNote={deleteNote}
               toggleComplete={toggleComplete}
               setCurrentId={setCurrentId}
+              openDelete={openDelete}
+              onOpenDelete={handleOpenDelete}
+              onCloseDelete={handleCloseDelete}
+              id={currentId}
+              deleteNote={deleteNote}
             />
           )}
         </Layout>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LinearProgress, Box } from '@material-ui/core';
 import { progressTracker } from '../../utils/progressTracker';
 
@@ -6,17 +6,13 @@ import useStyles from './styles';
 
 export const ProgressBar = ({ notes }) => {
   const classes = useStyles();
-  const { sum, progress } = progressTracker(notes);
-
-  useEffect(() => {
-    progressTracker(notes);
-  }, [notes]);
+  const { count, progress } = progressTracker(notes);
 
   return (
     <Box className={classes.progressContainer}>
       <p
         className={classes.progressTitle}
-      >{`You have ${sum} / ${notes.length} completed`}</p>
+      >{`You have ${count} / ${notes.length} completed`}</p>
       <LinearProgress variant="determinate" value={progress} />
     </Box>
   );

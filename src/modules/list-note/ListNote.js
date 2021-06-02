@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteCard } from '../../components/NoteCard';
 import { Image } from '../../components/Image';
+import { DeleteDialog } from '../../components/DeleteDialog';
 
 import useStyles from './styles';
 
@@ -15,23 +16,16 @@ export const ListNote = ({
   toggleComplete,
   handleOpen,
   setCurrentId,
+  openDelete,
+  onOpenDelete,
+  onCloseDelete,
+  id,
 }) => {
-  const [sortedNotes, setSortedNotes] = useState();
   const classes = useStyles();
 
-  useEffect(() => {
-    setSortedNotes(
-      notes.sort((a, b) =>
-        a.completed === b.completed
-          ? b.created_at - a.created_at
-          : a.completed - b.completed,
-      ),
-    );
-  }, [notes]);
-
   const noteItems =
-    sortedNotes &&
-    sortedNotes
+    notes &&
+    notes
       .filter((note) => {
         return note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
           category === 'all'
@@ -44,10 +38,12 @@ export const ListNote = ({
             note={note}
             key={uuidv4()}
             editNote={editNote}
-            deleteNote={deleteNote}
             toggleComplete={toggleComplete}
-            handleOpen={handleOpen}
+            onOpen={handleOpen}
             setCurrentId={setCurrentId}
+            onOpenDelete={onOpenDelete}
+            openDelete={openDelete}
+            onCloseDelete={onCloseDelete}
           />
         );
       });
@@ -57,7 +53,16 @@ export const ListNote = ({
       {noteItems && noteItems.length === 0 ? (
         <Image title="Couldn't find any notes" url="search" />
       ) : (
-        <Box className={classes.cardContainer}>{noteItems}</Box>
+        <Box className={classes.root}>
+          <Box className={classes.cardContainer}>{noteItems}</Box>
+          <DeleteDialog
+            openDelete={openDelete}
+            onOpenDelete={onOpenDelete}
+            onCloseDelete={onCloseDelete}
+            id={id}
+            deleteNote={deleteNote}
+          />
+        </Box>
       )}
     </>
   );

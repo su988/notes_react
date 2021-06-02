@@ -13,10 +13,10 @@ import useStyles from './styles';
 
 export const NoteCard = ({
   note: { title, description, category, date, id, completed },
-  deleteNote,
   toggleComplete,
-  handleOpen,
+  onOpen,
   setCurrentId,
+  onOpenDelete,
 }) => {
   const classes = useStyles();
 
@@ -26,11 +26,12 @@ export const NoteCard = ({
 
   const handleEdit = () => {
     setCurrentId(id);
-    handleOpen();
+    onOpen();
   };
 
   const handleDelete = () => {
-    deleteNote(id);
+    setCurrentId(id);
+    onOpenDelete();
   };
 
   return (
@@ -43,6 +44,8 @@ export const NoteCard = ({
                 checked={completed}
                 onChange={handleCheck}
                 className={classes.checkbox}
+                labelStyle={{ color: 'white' }}
+                iconStyle={{ fill: 'white' }}
               />
               <Typography variant="h5" component="h2" className={classes.title}>
                 {title}

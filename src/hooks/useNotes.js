@@ -2,16 +2,27 @@ import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { dateFormatter } from '../utils/dateFomatter';
 
-export const useNotes = (initialNotes = []) => {
+export const useNotes = () => {
   const [notes, setNotes] = useState(
     localStorage.getItem('notes')
       ? JSON.parse(localStorage.getItem('notes'))
       : [],
   );
+  const [sortedNotes, setSortedNotes] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes));
+    setSortedNotes(
+      notes.sort((a, b) =>
+        a.completed === b.completed
+          ? Date.parse(b.created_at) - Date.parse(a.created_at)
+          : a.completed - b.completed,
+      ),
+    );
   }, [notes]);
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(sortedNotes));
+  }, [sortedNotes]);
 
   const addNote = (data) => {
     const newData = {
@@ -58,7 +69,7 @@ export const useNotes = (initialNotes = []) => {
   };
 
   return {
-    notes,
+    sortedNotes,
     addNote,
     editNote,
     deleteNote,

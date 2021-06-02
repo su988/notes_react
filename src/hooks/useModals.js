@@ -3,6 +3,7 @@ import { useState } from 'react';
 export const useModals = () => {
   const [openNew, setOpenNew] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   const handleOpenNew = () => {
     setOpenNew(true);
@@ -20,6 +21,14 @@ export const useModals = () => {
     setOpenEdit(false);
   };
 
+  const handleOpenDelete = () => {
+    setOpenDelete(true);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
   return {
     openNew,
     handleOpenNew,
@@ -27,5 +36,8 @@ export const useModals = () => {
     openEdit,
     handleOpenEdit,
     handleCloseEdit,
+    openDelete,
+    handleOpenDelete,
+    handleCloseDelete,
   };
 };

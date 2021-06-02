@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px',
     color: '#fff',
     opacity: '0.6',
+    '&.MuiCheckbox-colorSecondary.Mui-checked': {
+      color: '#282E2999',
+    },
   },
 
   title: {
