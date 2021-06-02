@@ -7,20 +7,7 @@ import { DeleteDialog } from '../../components/DeleteDialog';
 
 import useStyles from './styles';
 
-export const ListNote = ({
-  notes,
-  searchTerm,
-  category,
-  editNote,
-  deleteNote,
-  toggleComplete,
-  handleOpen,
-  setCurrentId,
-  openDelete,
-  onOpenDelete,
-  onCloseDelete,
-  id,
-}) => {
+export const ListNote = ({ notes, searchTerm, category, id, setCurrentId }) => {
   const classes = useStyles();
 
   const noteItems =
@@ -34,17 +21,7 @@ export const ListNote = ({
       })
       .map((note) => {
         return (
-          <NoteCard
-            note={note}
-            key={uuidv4()}
-            editNote={editNote}
-            toggleComplete={toggleComplete}
-            onOpen={handleOpen}
-            setCurrentId={setCurrentId}
-            onOpenDelete={onOpenDelete}
-            openDelete={openDelete}
-            onCloseDelete={onCloseDelete}
-          />
+          <NoteCard note={note} key={uuidv4()} setCurrentId={setCurrentId} />
         );
       });
 
@@ -55,13 +32,7 @@ export const ListNote = ({
       ) : (
         <Box className={classes.root}>
           <Box className={classes.cardContainer}>{noteItems}</Box>
-          <DeleteDialog
-            openDelete={openDelete}
-            onOpenDelete={onOpenDelete}
-            onCloseDelete={onCloseDelete}
-            id={id}
-            deleteNote={deleteNote}
-          />
+          <DeleteDialog id={id} />
         </Box>
       )}
     </>

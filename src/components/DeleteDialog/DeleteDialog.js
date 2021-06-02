@@ -4,21 +4,25 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 
+import { useModals } from '../../hooks/useModals';
+import { useNotes } from '../../hooks/useNotes';
 import useStyles from './styles';
 
-export const DeleteDialog = ({ openDelete, onCloseDelete, id, deleteNote }) => {
+export const DeleteDialog = ({ id }) => {
+  const { deleteNote } = useNotes();
+  const { handleCloseDelete, openDelete } = useModals();
   const classes = useStyles();
 
   const handleDelete = () => {
     deleteNote(id);
-    onCloseDelete();
+    handleCloseDelete();
   };
 
   return (
     <Box className={classes.container}>
       <Dialog
         open={openDelete}
-        onClose={onCloseDelete}
+        onClose={handleCloseDelete}
         BackdropProps={{ style: { backgroundColor: 'transparent' } }}
         classes={{
           paper: classes.dialog,
@@ -26,7 +30,7 @@ export const DeleteDialog = ({ openDelete, onCloseDelete, id, deleteNote }) => {
       >
         <p className={classes.title}>{'Delete Note?'}</p>
         <DialogActions>
-          <Button onClick={onCloseDelete} color="primary">
+          <Button onClick={handleCloseDelete} color="primary">
             CANCEL
           </Button>
           <Button onClick={handleDelete} color="primary" autoFocus>

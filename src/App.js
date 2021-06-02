@@ -18,19 +18,8 @@ import { useInputs } from './hooks/useInputs';
 import useStyles from './styles';
 
 export const App = () => {
-  const { sortedNotes, addNote, editNote, deleteNote, toggleComplete } =
-    useNotes();
-  const {
-    openNew,
-    handleOpenNew,
-    handleCloseNew,
-    openEdit,
-    handleOpenEdit,
-    handleCloseEdit,
-    openDelete,
-    handleOpenDelete,
-    handleCloseDelete,
-  } = useModals();
+  const { sortedNotes } = useNotes();
+  const { openNew, handleCloseNew, openEdit, handleCloseEdit } = useModals();
   const { searchTerm, handleSearchTermChange, category, handleCategoryChange } =
     useInputs();
   const [currentId, setCurrentId] = useState();
@@ -50,30 +39,19 @@ export const App = () => {
           <SearchBar onSearchTermChange={handleSearchTermChange} />
           <Box className={classes.btnContainer}>
             <FilterTabs onCategoryChange={handleCategoryChange} />
-            <ModalButton handleOpen={handleOpenNew} />
+            <ModalButton />
           </Box>
 
           <ProgressBar notes={sortedNotes} />
           {sortedNotes.length === 0 ? (
-            <Image
-              handleOpen={handleOpenNew}
-              title="You don't have any notes"
-              url="add"
-            />
+            <Image isNew={true} title="You don't have any notes" url="add" />
           ) : (
             <ListNote
               notes={sortedNotes}
-              handleOpen={handleOpenEdit}
               searchTerm={searchTerm}
               category={category}
-              editNote={editNote}
-              toggleComplete={toggleComplete}
-              setCurrentId={setCurrentId}
-              openDelete={openDelete}
-              onOpenDelete={handleOpenDelete}
-              onCloseDelete={handleCloseDelete}
               id={currentId}
-              deleteNote={deleteNote}
+              setCurrentId={setCurrentId}
             />
           )}
         </Layout>
@@ -83,7 +61,7 @@ export const App = () => {
         handleClose={handleCloseNew}
         title="Add Note"
       >
-        <AddNote handleClose={handleCloseNew} addNote={addNote} />
+        <AddNote handleClose={handleCloseNew} />
       </FormModal>
 
       <FormModal
@@ -95,7 +73,6 @@ export const App = () => {
           handleClose={handleCloseEdit}
           selectedNote={selectedNote}
           id={currentId}
-          editNote={editNote}
         />
       </FormModal>
     </>

@@ -9,15 +9,16 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import { useNotes } from '../../hooks/useNotes';
+import { useModals } from '../../hooks/useModals';
 import useStyles from './styles';
 
 export const NoteCard = ({
   note: { title, description, category, date, id, completed },
-  toggleComplete,
-  onOpen,
   setCurrentId,
-  onOpenDelete,
 }) => {
+  const { toggleComplete } = useNotes();
+  const { handleOpenEdit, handleOpenDelete } = useModals();
   const classes = useStyles();
 
   const handleCheck = () => {
@@ -26,12 +27,12 @@ export const NoteCard = ({
 
   const handleEdit = () => {
     setCurrentId(id);
-    onOpen();
+    handleOpenEdit();
   };
 
   const handleDelete = () => {
     setCurrentId(id);
-    onOpenDelete();
+    handleOpenDelete();
   };
 
   return (

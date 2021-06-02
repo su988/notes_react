@@ -1,7 +1,9 @@
 import React from 'react';
 import { NoteForm } from '../../components/NoteForm';
+import { useNotes } from '../../hooks/useNotes';
 
-export const EditNote = ({ handleClose, id, editNote, selectedNote }) => {
+export const EditNote = ({ handleClose, id, selectedNote }) => {
+  const { editNote } = useNotes();
   return (
     <>
       <NoteForm
