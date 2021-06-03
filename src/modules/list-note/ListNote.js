@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteCard } from '../../components/NoteCard';
@@ -14,10 +14,14 @@ export const ListNote = ({ notes, searchTerm, category, id, setCurrentId }) => {
     notes &&
     notes
       .filter((note) => {
-        return note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          category === 'all'
-          ? note
-          : note.category === category;
+        if (category === 'all') {
+          return note.title.toLowerCase().includes(searchTerm.toLowerCase());
+        } else {
+          return (
+            note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            note.category === category
+          );
+        }
       })
       .map((note) => {
         return (
