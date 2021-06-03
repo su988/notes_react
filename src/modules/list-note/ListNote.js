@@ -14,14 +14,10 @@ export const ListNote = ({ notes, searchTerm, category, id, setCurrentId }) => {
     notes &&
     notes
       .filter((note) => {
-        if (category === 'all') {
-          return note.title.toLowerCase().includes(searchTerm.toLowerCase());
-        } else {
-          return (
-            note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            note.category === category
-          );
-        }
+        return category === 'all'
+          ? note.title.toLowerCase().includes(searchTerm.toLowerCase())
+          : note.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+              note.category === category;
       })
       .map((note) => {
         return (
