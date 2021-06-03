@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   headerRight: {
     opacity: '0.6',
     marginRight: '-10px',
+    position: 'relative',
   },
 
   editBtn: {

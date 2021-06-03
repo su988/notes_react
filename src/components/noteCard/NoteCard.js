@@ -15,7 +15,7 @@ import useStyles from './styles';
 
 export const NoteCard = ({
   note: { title, description, category, date, id, completed },
-  setCurrentId,
+  setSelectedId,
 }) => {
   const { toggleComplete } = useNotes();
   const { handleOpenEdit, handleOpenDelete } = useModals();
@@ -26,12 +26,12 @@ export const NoteCard = ({
   };
 
   const handleEdit = () => {
-    setCurrentId(id);
+    setSelectedId(id);
     handleOpenEdit();
   };
 
   const handleDelete = () => {
-    setCurrentId(id);
+    setSelectedId(id);
     handleOpenDelete();
   };
 

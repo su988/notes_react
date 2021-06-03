@@ -13,45 +13,40 @@ import { ListNote } from './modules/list-note';
 
 import { useNotes } from './hooks/useNotes';
 import { useModals } from './hooks/useModals';
-import { useInputs } from './hooks/useInputs';
 
 import useStyles from './styles';
 
 export const App = () => {
   const { sortedNotes } = useNotes();
   const { openNew, handleCloseNew, openEdit, handleCloseEdit } = useModals();
-  const { searchTerm, handleSearchTermChange, category, handleCategoryChange } =
-    useInputs();
-  const [currentId, setCurrentId] = useState();
+  const [selectedId, setSelectedId] = useState();
   const [selectedNote, setSelectedNote] = useState({});
-
   const classes = useStyles();
 
   useEffect(() => {
-    setSelectedNote(sortedNotes.find((note) => note.id === currentId));
-  }, [currentId, sortedNotes]);
+    setSelectedNote(sortedNotes.find((note) => note.id === selectedId));
+  }, [selectedId, sortedNotes]);
 
   return (
     <>
       <CssBaseline />
       <Box className={classes.mainApp}>
         <Layout>
-          <SearchBar onSearchTermChange={handleSearchTermChange} />
+          <SearchBar />
           <Box className={classes.btnContainer}>
-            <FilterTabs onCategoryChange={handleCategoryChange} />
+            <FilterTabs />
             <ModalButton />
           </Box>
 
           <ProgressBar notes={sortedNotes} />
+
           {sortedNotes.length === 0 ? (
             <Image isNew={true} title="You don't have any notes" url="add" />
           ) : (
             <ListNote
               notes={sortedNotes}
-              searchTerm={searchTerm}
-              category={category}
-              id={currentId}
-              setCurrentId={setCurrentId}
+              id={selectedId}
+              setSelectedId={setSelectedId}
             />
           )}
         </Layout>
@@ -72,7 +67,7 @@ export const App = () => {
         <EditNote
           handleClose={handleCloseEdit}
           selectedNote={selectedNote}
-          id={currentId}
+          id={selectedId}
         />
       </FormModal>
     </>

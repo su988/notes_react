@@ -3,9 +3,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
+import { useInputs } from '../../hooks/useInputs';
 import useStyles from './styles';
 
-export const SearchBar = ({ onSearchTermChange }) => {
+export const SearchBar = () => {
+  const { handleSearchTermChange } = useInputs();
   const classes = useStyles();
 
   return (
@@ -15,7 +17,7 @@ export const SearchBar = ({ onSearchTermChange }) => {
         placeholder="Search notes..."
         InputProps={{ disableUnderline: true }}
         className={classes.searchInput}
-        onChange={onSearchTermChange}
+        onChange={handleSearchTermChange}
       />
     </Box>
   );

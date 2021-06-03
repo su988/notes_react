@@ -1,9 +1,11 @@
 import React from 'react';
 import { Tabs, Tab, Box } from '@material-ui/core';
 
+import { useInputs } from '../../hooks/useInputs';
 import useStyles from './styles';
 
-export const FilterTabs = ({ onCategoryChange }) => {
+export const FilterTabs = () => {
+  const { handleCategoryChange } = useInputs();
   const [value, setValue] = React.useState(0);
   const classes = useStyles({ value });
 
@@ -13,13 +15,13 @@ export const FilterTabs = ({ onCategoryChange }) => {
     setValue(newValue);
 
     if (newValue === 0) {
-      onCategoryChange('all');
+      handleCategoryChange('all');
     } else if (newValue === 1) {
-      onCategoryChange('home');
+      handleCategoryChange('home');
     } else if (newValue === 2) {
-      onCategoryChange('work');
+      handleCategoryChange('work');
     } else if (newValue === 3) {
-      onCategoryChange('personal');
+      handleCategoryChange('personal');
     }
   };
 

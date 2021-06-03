@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteCard } from '../../components/NoteCard';
 import { Image } from '../../components/Image';
 import { DeleteDialog } from '../../components/DeleteDialog';
 
+import { useInputs } from '../../hooks/useInputs';
 import useStyles from './styles';
 
-export const ListNote = ({ notes, searchTerm, category, id, setCurrentId }) => {
+export const ListNote = ({ notes, id, setSelectedId }) => {
+  const { searchTerm, category } = useInputs();
   const classes = useStyles();
 
   const noteItems =
@@ -21,7 +23,7 @@ export const ListNote = ({ notes, searchTerm, category, id, setCurrentId }) => {
       })
       .map((note) => {
         return (
-          <NoteCard note={note} key={uuidv4()} setCurrentId={setCurrentId} />
+          <NoteCard note={note} key={uuidv4()} setSelectedId={setSelectedId} />
         );
       });
 

@@ -1,21 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { InputsContext } from '../contexts/InputsContext';
 
-export const useInputs = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [category, setCategory] = useState('all');
-
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleCategoryChange = (input) => {
-    setCategory(input);
-  };
-
-  return {
-    searchTerm,
-    handleSearchTermChange,
-    category,
-    handleCategoryChange,
-  };
-};
+export const useInputs = () => useContext(InputsContext);
