@@ -1,8 +1,8 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { v4 as uuidv4 } from 'uuid';
-import { NoteCard } from '../../components/NoteCard';
-import { Image } from '../../components/Image';
+import { NoteCard } from '../../components/noteCard';
+import { Image } from '../../components/image';
 import { DeleteDialog } from '../../components/DeleteDialog';
 
 import { useInputs } from '../../hooks/useInputs';
