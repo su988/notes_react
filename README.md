@@ -1,6 +1,6 @@
 Personal Notes app with features to add, edit, delete, and mark them as completed. Additional features include searching, filtering and visualizing completion progress.
 
-### :point_right: [DEMO] :rocket:
+### :point_right: [DEMO](https://notes-react-alpha.vercel.app/) :rocket:
 
 :star: Original project
 [bigsondev.com](https://bigsondev.com/projects/notes-app-project/)
