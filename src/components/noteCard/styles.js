@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: '404px',
+    width: '404px',
     maxHeight: '174px',
     boxShadow: '0px 3px 6px #00000029',
     borderRadius: '4px',
@@ -76,7 +76,13 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
   },
 
-  desctiption: { fontSize: '14px', minHeight: '90px' },
+  desctiption: {
+    fontSize: '14px',
+    minHeight: '80px',
+    maxHeight: '80px',
+    overflow: 'hidden',
+    marginBottom: '10px',
+  },
 
   date: { opacity: '0.6', fontSize: '15px' },
 }));
