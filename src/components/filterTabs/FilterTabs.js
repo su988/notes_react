@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, Box } from '@material-ui/core';
+import { Tabs, Tab } from '@material-ui/core';
 
 import { useInputs } from '../../hooks/useInputs';
 import useStyles from './styles';
