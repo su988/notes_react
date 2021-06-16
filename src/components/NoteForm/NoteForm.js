@@ -7,6 +7,7 @@ import {
   Select,
   MenuItem,
   FormControl,
+  FormHelperText,
   InputLabel,
 } from '@material-ui/core';
 
@@ -96,7 +97,6 @@ export const NoteForm = ({
                   {value ? '' : 'Select Category'}
                 </InputLabel>
                 <Select
-                  required
                   value={value}
                   onChange={onChange}
                   MenuProps={{
@@ -106,8 +106,6 @@ export const NoteForm = ({
                     },
                     getContentAnchorEl: null,
                   }}
-                  error={!!error}
-                  helpertext={error ? error.message : null}
                   disableUnderline
                   className={classes.select}
                 >
@@ -115,6 +113,7 @@ export const NoteForm = ({
                   <MenuItem value="work">Work</MenuItem>
                   <MenuItem value="personal">Personal</MenuItem>
                 </Select>
+                <FormHelperText>{error?.message}</FormHelperText>
               </FormControl>
             )}
           />
