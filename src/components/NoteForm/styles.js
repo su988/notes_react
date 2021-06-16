@@ -60,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  error: {
+    color: 'red',
+  },
+
   select: {
     paddingTop: '5px',
     paddingLeft: '10px',

@@ -113,7 +113,9 @@ export const NoteForm = ({
                   <MenuItem value="work">Work</MenuItem>
                   <MenuItem value="personal">Personal</MenuItem>
                 </Select>
-                <FormHelperText>{error?.message}</FormHelperText>
+                <FormHelperText className={classes.error}>
+                  {error?.message}
+                </FormHelperText>
               </FormControl>
             )}
           />
