@@ -25,7 +25,6 @@ Personal Notes app with features to add, edit, delete, and mark them as complete
 - Users can see how many notes are completed including the visual progression indicator.
 - Users can mark notes as completed, edit, and delete them.
 - Completed notes have strikethrough text and gray background. Also, they are moved into the end.
-- When editing notes, the date of note also updates all together with other fields.
 - Confirmation pops up when deleting notes.
 
 ## :gem: Additional Features
@@ -36,5 +35,14 @@ Personal Notes app with features to add, edit, delete, and mark them as complete
 
 ```bash
 # In the project directory run:
-yarn add && yarn start
+
+# Start
+yarn
+
+# Build
+yarn build
+
+# Test
+yarn test
+
 ```
