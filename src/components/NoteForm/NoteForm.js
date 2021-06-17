@@ -43,18 +43,20 @@ export const NoteForm = ({
                 field: { onChange, value },
                 fieldState: { error },
               }) => (
-                <TextField
-                  placeholder="Add title..."
-                  InputProps={{
-                    disableUnderline: true,
-                    className: classes.inputTitle,
-                  }}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  className={classes.textTitle}
-                  helperText={error ? error.message : null}
-                />
+                <>
+                  <TextField
+                    placeholder="Add title..."
+                    InputProps={{
+                      disableUnderline: true,
+                      className: classes.inputTitle,
+                    }}
+                    value={value}
+                    onChange={onChange}
+                  />
+                  <FormHelperText className={classes.error}>
+                    {error?.message}
+                  </FormHelperText>
+                </>
               )}
             />
             <Controller
@@ -66,22 +68,23 @@ export const NoteForm = ({
                 field: { onChange, value },
                 fieldState: { error },
               }) => (
-                <TextField
-                  placeholder="Add description..."
-                  multiline
-                  InputProps={{
-                    disableUnderline: true,
-                    className: classes.description,
-                    classes: {
-                      input: classes.input,
-                    },
-                  }}
-                  value={value}
-                  onChange={onChange}
-                  className={classes.description}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
+                <>
+                  <TextField
+                    placeholder="Add description..."
+                    multiline
+                    rows={9}
+                    InputProps={{
+                      disableUnderline: true,
+                      className: classes.description,
+                    }}
+                    value={value}
+                    onChange={onChange}
+                    className={classes.description}
+                  />
+                  <FormHelperText className={classes.error}>
+                    {error?.message}
+                  </FormHelperText>
+                </>
               )}
             />
           </Box>
@@ -93,7 +96,7 @@ export const NoteForm = ({
             rules={{ required: 'Category required' }}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel shrink={false} className={classes.inputLabel}>
+                <InputLabel shrink={false} className={classes.label}>
                   {value ? '' : 'Select Category'}
                 </InputLabel>
                 <Select

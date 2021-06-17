@@ -1,25 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   searchContainer: {
-    backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     minHeight: '46px',
-    minWidth: '100%',
     boxShadow: '0px 3px 6px #00000029',
   },
 
   searchIcon: {
-    marginLeft: '10px',
-    marginRight: '10px',
-    marginBottom: '5px',
+    margin: '5px 10px',
     color: '#00000099',
-  },
-
-  searchInput: {
-    width: '100%',
   },
 }));
 

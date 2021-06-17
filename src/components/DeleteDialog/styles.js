@@ -1,13 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  dialog: {
-    position: 'absolute',
-  },
-
+const useStyles = makeStyles(() => ({
   title: {
     minWidth: '300px',
-    padding: '0 20px',
+    padding: '30px',
   },
 }));
 

@@ -10,9 +10,11 @@ import { ModalButton } from './components/modalButton';
 import { ProgressBar } from './components/progressBar';
 import { Image } from './components/image';
 import { ListNote } from './modules/list-note';
+import { ThemeProvider } from '@material-ui/core';
 
 import { useNotes } from './hooks/useNotes';
 import { useModals } from './hooks/useModals';
+import { theme } from './theme';
 
 import useStyles from './styles';
 
@@ -29,47 +31,49 @@ export const App = () => {
 
   return (
     <>
-      <CssBaseline />
-      <Box className={classes.mainApp}>
-        <Layout>
-          <SearchBar />
-          <Box className={classes.btnContainer}>
-            <FilterTabs />
-            <ModalButton />
-          </Box>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box className={classes.mainApp}>
+          <Layout>
+            <SearchBar />
+            <Box className={classes.btnContainer}>
+              <FilterTabs />
+              <ModalButton />
+            </Box>
 
-          <ProgressBar notes={sortedNotes} />
+            <ProgressBar notes={sortedNotes} />
 
-          {sortedNotes.length === 0 ? (
-            <Image isNew={true} title="You don't have any notes" url="add" />
-          ) : (
-            <ListNote
-              notes={sortedNotes}
-              id={selectedId}
-              setSelectedId={setSelectedId}
-            />
-          )}
-        </Layout>
-      </Box>
-      <FormModal
-        openModal={openNew}
-        handleClose={handleCloseNew}
-        title="Add Note"
-      >
-        <AddNote handleClose={handleCloseNew} />
-      </FormModal>
+            {sortedNotes.length === 0 ? (
+              <Image isNew={true} title="You don't have any notes" url="add" />
+            ) : (
+              <ListNote
+                notes={sortedNotes}
+                id={selectedId}
+                setSelectedId={setSelectedId}
+              />
+            )}
+          </Layout>
+        </Box>
+        <FormModal
+          openModal={openNew}
+          handleClose={handleCloseNew}
+          title="Add Note"
+        >
+          <AddNote handleClose={handleCloseNew} />
+        </FormModal>
 
-      <FormModal
-        openModal={openEdit}
-        handleClose={handleCloseEdit}
-        title="Update Note"
-      >
-        <EditNote
+        <FormModal
+          openModal={openEdit}
           handleClose={handleCloseEdit}
-          selectedNote={selectedNote}
-          id={selectedId}
-        />
-      </FormModal>
+          title="Update Note"
+        >
+          <EditNote
+            handleClose={handleCloseEdit}
+            selectedNote={selectedNote}
+            id={selectedId}
+          />
+        </FormModal>
+      </ThemeProvider>
     </>
   );
 };

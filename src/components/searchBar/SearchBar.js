@@ -16,8 +16,8 @@ export const SearchBar = () => {
       <TextField
         placeholder="Search notes..."
         InputProps={{ disableUnderline: true }}
-        className={classes.searchInput}
         onChange={handleSearchTermChange}
+        fullWidth
       />
     </Box>
   );

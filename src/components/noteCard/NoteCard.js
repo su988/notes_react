@@ -74,7 +74,7 @@ export const NoteCard = ({
           <Typography
             variant="body2"
             component="p"
-            className={classes.desctiption}
+            className={classes.description}
           >
             {description}
           </Typography>
