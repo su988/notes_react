@@ -1,7 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { dateFormatter } from '../utils/dateFomatter';
-import { sortNotes } from '../utils/notes';
 
 const NotesContext = createContext();
 
