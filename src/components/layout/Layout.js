@@ -1,9 +1,6 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-
-import useStyles from './styles';
+import { Container } from '@material-ui/core';
 
 export const Layout = ({ children }) => {
-  const classes = useStyles();
-  return <Box className={classes.container}>{children}</Box>;
+  return <Container maxWidth="md">{children}</Container>;
 };

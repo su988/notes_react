@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import { Box, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -28,7 +28,7 @@ export const DeleteDialog = ({ id }) => {
           paper: classes.dialog,
         }}
       >
-        <p className={classes.title}>{'Delete Note?'}</p>
+        <Typography className={classes.title}>{'Delete Note?'}</Typography>
         <DialogActions>
           <Button onClick={handleCloseDelete} color="primary">
             CANCEL

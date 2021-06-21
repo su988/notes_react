@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
   },
 
-  desctiption: {
+  description: {
     fontSize: '14px',
     minHeight: '80px',
     maxHeight: '80px',

@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
 
-  textTitle: {
-    marginBottom: '30px',
-  },
-
   inputTitle: {
     width: '475px',
     height: '44px',
@@ -26,18 +22,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '10px',
   },
 
-  input: {
-    backgroundColor: '#F4F4F4',
-    minHeight: '220px',
-    maxWidth: '475px',
-  },
-
   description: {
     borderRadius: '4px',
     backgroundColor: '#F4F4F4',
-    maxHeight: '227px',
-    paddingTop: '10px',
     paddingLeft: '5px',
+    marginTop: '15px',
   },
 
   formControl: {
@@ -47,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
   },
 
-  inputLabel: {
+  label: {
     backgroundColor: '#F4F4F4',
     height: '44px',
     width: '247px',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinearProgress, Box } from '@material-ui/core';
+import { LinearProgress, Box, Typography } from '@material-ui/core';
 import { progressTracker } from '../../utils/progressTracker';
 
 import useStyles from './styles';
@@ -10,9 +10,9 @@ export const ProgressBar = ({ notes }) => {
 
   return (
     <Box className={classes.progressContainer}>
-      <p
-        className={classes.progressTitle}
-      >{`You have ${count} / ${notes.length} completed`}</p>
+      <Typography className={classes.progressTitle}>
+        {`You have ${count} / ${notes.length} completed`}
+      </Typography>
       <LinearProgress variant="determinate" value={progress} />
     </Box>
   );

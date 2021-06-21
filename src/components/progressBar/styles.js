@@ -2,12 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   progressContainer: {
-    marginTop: '50px',
+    margin: '50px 0',
   },
 
   progressTitle: {
     color: '#00000099',
     fontSize: '18px',
+    marginBottom: '10px',
   },
 }));
 
